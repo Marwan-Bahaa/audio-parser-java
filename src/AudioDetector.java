@@ -4,20 +4,28 @@ import java.util.List;
 
 public class AudioDetector {
 
-    private List<AudioFormat> formats;
+    private final List<AudioFormat> formats = new ArrayList<>();
 
     public AudioDetector() {
-        formats = new ArrayList<>();
+        // Add supported formats
         formats.add(new MP3Format());
         formats.add(new WAVFormat());
     }
 
-    public String detect(MappedByteBuffer buffer) {
+    /**
+     * Detects the first matching AudioFormat.
+     */
+    public AudioFormat detect(MappedByteBuffer buffer) {
         for (AudioFormat format : formats) {
-            if (format.matches(buffer)) {
-                return format.getType();
-            }
+            if (format.matches(buffer)) return format;
         }
-        return "Unknown";
+        return null; // Unknown
+    }
+
+    /**
+     * Add new format dynamically.
+     */
+    public void addFormat(AudioFormat format) {
+        formats.add(format);
     }
 }
