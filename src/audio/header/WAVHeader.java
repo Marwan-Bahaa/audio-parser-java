@@ -1,3 +1,5 @@
+package audio.header;
+
 public class WAVHeader implements AudioHeader {
 
     // 4 bytes → String
@@ -53,7 +55,7 @@ public class WAVHeader implements AudioHeader {
                 "\n" +
                 "Subchunk1ID    : " + subchunk1Id + "\n" +
                 "Subchunk1Size  : " + subchunk1Size + "\n" +
-                "AudioFormat    : " + audioFormat + (audioFormat == 1 ? " (PCM)" : "") + "\n" +
+                "audio.format.AudioFormat    : " + audioFormat + (audioFormat == 1 ? " (PCM)" : "") + "\n" +
                 "NumChannels    : " + numChannels + (numChannels == 1 ? " (Mono)" : numChannels == 2 ? " (Stereo)" : "") + "\n" +
                 "SampleRate     : " + sampleRate + " Hz\n" +
                 "ByteRate       : " + byteRate + " B/s\n" +

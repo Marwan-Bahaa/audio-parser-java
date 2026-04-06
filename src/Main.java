@@ -1,3 +1,7 @@
+import audio.core.*;
+import audio.formatter.*;
+import audio.header.AudioHeader;
+
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 
@@ -9,13 +13,13 @@ public class Main {
 
         try {
             // Map the file into memory
-            MappedByteBuffer buffer = FileReader.mapFile(filePath0);
+            MappedByteBuffer buffer = FileReader.mapFile(filePath1);
 
             // Create the detector
             AudioDetector detector = new AudioDetector();
 
             // Detect the file format
-            AudioFormat format = detector.detect(buffer);
+            audio.format.AudioFormat format = (audio.format.AudioFormat) detector.detect(buffer);
 
             // Print the file type
             System.out.println("File type: " + (format != null ? format.getType() : "Unknown"));

@@ -1,3 +1,8 @@
+package audio.format;
+
+import audio.header.AudioHeader;
+import audio.header.WAVHeader;
+
 import java.nio.MappedByteBuffer;
 
 public class WAVFormat implements AudioFormat {
@@ -59,14 +64,14 @@ public class WAVFormat implements AudioFormat {
         // --- LOOP over chunks ---
         while (buf.remaining() >= 8) {
 
-            // اقرأ ID
+
             byte[] idBytes = new byte[4];
             buf.get(idBytes);
             String id = new String(idBytes);
 
             int size = buf.getInt();
 
-            // 🛑 Bounds check
+
             if (size < 0 || size > buf.remaining()) {
                 break; // corrupted file
             }
@@ -109,10 +114,11 @@ public class WAVFormat implements AudioFormat {
             }
         }
 
-        return new WAVHeader(chunkId, format, subchunk1Id, subchunk1Id,
+        return new WAVHeader(chunkId, format, subchunk1Id, subchunk2Id,
                 chunkSize, subchunk1Size, sampleRate, byteRate, subchunk2Size,
                 audioFormat, numChannels, blockAlign, bitsPerSample);
     }
+
 
 
 }

@@ -1,3 +1,7 @@
+package audio.core;
+
+import audio.format.*;
+
 import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,7 @@ public class AudioDetector {
     }
 
     /**
-     * Detects the first matching AudioFormat.
+     * Detects the first matching audio.format.AudioFormat.
      */
     public AudioFormat detect(MappedByteBuffer buffer) {
         for (AudioFormat format : formats) {
